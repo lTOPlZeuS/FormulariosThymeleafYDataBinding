@@ -15,12 +15,22 @@ public class FormController {
     model.addAttribute("titulo", "Formulario");
     return "form";
   }
+
+  //Asignando valor por valor a un objeto
+  // @PostMapping("/form")
+  // public String procesar(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String email) {
+  //   Usuario usuario = new Usuario();
+  //   usuario.setUsername(username);
+  //   usuario.setPassword(password);
+  //   usuario.setEmail(email);
+  //   model.addAttribute("titulo", "Formulario");
+  //   model.addAttribute("usuario", usuario);
+  //   return "resultado";
+  // }
+
+  //Asignando valor por referencia a un objeto de manera dinamica y mas corta de la manera anterior
   @PostMapping("/form")
-  public String procesar(Model model, @RequestParam String username, @RequestParam String password, @RequestParam String email) {
-    Usuario usuario = new Usuario();
-    usuario.setUsername(username);
-    usuario.setPassword(password);
-    usuario.setEmail(email);
+  public String procesar(Usuario usuario, Model model) {
     model.addAttribute("titulo", "Formulario");
     model.addAttribute("usuario", usuario);
     return "resultado";
