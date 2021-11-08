@@ -39,11 +39,12 @@ public class FormController {
   public String procesar(@Validated Usuario usuario, BindingResult result, Model model) {
     model.addAttribute("titulo", "Formulario");
     if (result.hasErrors()) {
-      Map<String, String> errors = new HashMap<>();
-      result.getFieldErrors().forEach(error -> {
-        errors.put(error.getField(), error.getDefaultMessage());
-      });
-      model.addAttribute("errors", errors);
+      // Manera larga de validar errores
+      // Map<String, String> errors = new HashMap<>();
+      // result.getFieldErrors().forEach(error -> {
+      //   errors.put(error.getField(), error.getDefaultMessage());
+      // });
+      // model.addAttribute("errors", errors);
       return "form";
     }
     model.addAttribute("usuario", usuario);

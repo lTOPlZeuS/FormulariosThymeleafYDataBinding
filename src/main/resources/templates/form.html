@@ -14,21 +14,21 @@
   </head>
   <body>
     <h3 th:text="${titulo}"></h3>
-    <form class="form-group container" th:action="@{/form}" method="post">
+    <form
+      class="form-group container"
+      th:action="@{/form}"
+      th:object="${usuario}"
+      method="post"
+    >
       <div>
         <label class="label form-label" for="username">Username</label>
         <div>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            th:value="${usuario.username}"
-          />
+          <input type="text" id="username" th:field="*{username}" />
         </div>
         <div
           class="text-danger"
-          th:if="${errors != null && errors.containsKey('username')}"
-          th:text="${errors.username}"
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}"
         ></div>
       </div>
       <div>
@@ -37,15 +37,15 @@
           <input
             class="form-input"
             type="password"
-            name="password"
             id="password"
-            th:value="${usuario.password}"
+            th:field="*{password}"
           />
         </div>
+        <!-- th:if="${errors != null && errors.containsKey('password')}"  manera de errores con map-->
         <div
           class="text-danger"
-          th:if="${errors != null && errors.containsKey('password')}"
-          th:text="${errors.password}"
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}"
         ></div>
       </div>
       <div>
@@ -54,15 +54,14 @@
           <input
             class="form-input"
             type="text"
-            name="email"
             id="email"
-            th:value="${usuario.email}"
+            th:field="*{email}"
           />
         </div>
         <div
           class="text-danger"
-          th:if="${errors != null && errors.containsKey('email')}"
-          th:text="${errors.email}"
+          th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}"
         ></div>
       </div>
       <div>
