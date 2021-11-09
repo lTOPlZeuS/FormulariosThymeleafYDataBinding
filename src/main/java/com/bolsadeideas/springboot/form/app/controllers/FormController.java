@@ -11,12 +11,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
+@SessionAttributes("usuario")
 public class FormController {
   @GetMapping("/form")
   public String form(Model model) {
     Usuario usuario = new Usuario();
+    usuario.setNombre("Juan");
+    usuario.setApellido("Perez");
+    usuario.setIdentificador("122_212_666F");
     model.addAttribute("usuario", usuario);
     model.addAttribute("titulo", "Formulario");
     return "form";
@@ -36,7 +42,7 @@ public class FormController {
 
   //Asignando valor por referencia a un objeto de manera dinamica y mas corta de la manera anterior
   @PostMapping("/form")
-  public String procesar(@Validated Usuario usuario, BindingResult result, Model model) {
+  public String procesar(@Validated Usuario usuario, BindingResult result, Model model,SessionStatus status) {
     model.addAttribute("titulo", "Formulario");
     if (result.hasErrors()) {
       // Manera larga de validar errores
@@ -48,6 +54,7 @@ public class FormController {
       return "form";
     }
     model.addAttribute("usuario", usuario);
+    status.setComplete();
     return "resultado";
   }
 }
