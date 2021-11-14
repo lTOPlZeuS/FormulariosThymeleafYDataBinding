@@ -3,11 +3,13 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 
 public class Usuario {
   //@Pattern(regexp = "[0-9]{2}[.][0-9]{3}[.][0-9]{3}[-][A-Z]{1}")
+  @IdentificadorRegex
   private String identificador;
   //@NotEmpty(message = "El campo nombre no puede estar vacío")
   private String nombre;
