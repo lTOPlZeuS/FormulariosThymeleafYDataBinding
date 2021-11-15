@@ -21,6 +21,39 @@
       method="post"
     >
       <div>
+        <label class="label form-label" for="rol">Roles</label>
+        <div th:each="role : ${listaRoles}">
+          <input type="checkbox" th:field="*{roles}" th:value="${role.id}" />
+          <label
+            th:for="${#ids.prev('roles')}"
+            th:text="${role.nombre}"
+          ></label>
+        </div>
+        <div
+          class="text-danger"
+          th:if="${#fields.hasErrors('pais')}"
+          th:errors="*{pais}"
+        ></div>
+      </div>
+      <div>
+        <label class="label form-label" for="pais">Pais</label>
+        <div>
+          <select id="pais" th:field="*{pais}">
+            <option value="">Selecione una opcion</option>
+            <option
+              th:each="pais: ${listaPaises}"
+              th:text="${pais.nombre}"
+              th:value="${pais.id}"
+            ></option>
+          </select>
+        </div>
+        <div
+          class="text-danger"
+          th:if="${#fields.hasErrors('pais')}"
+          th:errors="*{pais}"
+        ></div>
+      </div>
+      <div>
         <label class="label form-label" for="identificador"
           >Identificador</label
         >
@@ -98,6 +131,46 @@
           th:if="${#fields.hasErrors('email')}"
           th:errors="*{email}"
         ></div>
+      </div>
+      <div>
+        <label class="label form-label" for="cuenta">Cuenta</label>
+        <div>
+          <input
+            class="form-input"
+            type="number"
+            id="cuenta"
+            th:field="*{cuenta}"
+          />
+        </div>
+        <div
+          class="text-danger"
+          th:if="${#fields.hasErrors('cuenta')}"
+          th:errors="*{cuenta}"
+        ></div>
+      </div>
+      <div>
+        <label class="label form-label" for="fechaNacimiento"
+          >Fecha de Nacimiento</label
+        >
+        <div>
+          <input
+            class="form-input"
+            type="date"
+            id="fechaNacimiento"
+            th:field="*{fechaNacimiento}"
+          />
+        </div>
+        <div
+          class="text-danger"
+          th:if="${#fields.hasErrors('fechaNacimiento')}"
+          th:errors="*{fechaNacimiento}"
+        ></div>
+      </div>
+      <div>
+        <label class="label form-label" for="habilitado">Habilitar</label>
+        <div>
+          <input type="checkbox" th:field="*{habilitado}" id="habilitado" />
+        </div>
       </div>
       <div>
         <input class="mt-2 btn btn-success" type="submit" value="Enviar" />
